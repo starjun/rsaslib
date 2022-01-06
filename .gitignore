@@ -1,0 +1,11 @@
+.vscode
+.DS_Store
+.idea
+swagger/*
+*.zip
+*.log
+*.exe
+*.exe~
+*.tmp
+*.gz
+

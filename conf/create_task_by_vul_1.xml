@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<config>
+    <server>
+        <key name="task_type" value="ip"/>                          <!--扫描目标类型-->
+        <key name="targets" value="10.65.195.204"/>                 <!--扫描目标,value为一个或多个ip用分号分隔-->
+         
+        <key name="os_match" value="yes"/>                          <!--自动匹配漏洞扫描：若漏洞扫描模板选择的自动匹配扫描则value为yes否则为no-->
+        <key name="messtypes" value="5;6;7;8;9;10;11;12;13;14;15;16;17;18;20;21;22;23;24;25;26;27;28"/><!--系统定义的类型，请勿修改-->
+         
+        <key name="isguesspwd" value="no"/>                         <!---评估任务的口令猜测：评估任务若启用口令猜测任务则value为yes否则为no-->
+        <key name="port_strategy" value="standard"/>                <!--端口策略：value为四选一，standard(标准端口扫描)、fast(快速端口扫描)、user(指定端口扫描)、allports(全端口扫描)-->
+        <!--key name="port_strategy_userports" value="1-100,443,445"-->
+        <!--*指定端口列表：若port_strategy为user有此标签否则无，value为一个或多个端口用逗号分隔 -->
+        <key name="port_speed" value="3"/>                          <!--端口扫描速度：value为1-5，分别代表由慢到快-->
+        <key name="port_tcp" value="T"/>                            <!--TCP端口扫描方式：value为S(SYN方式)或者T(CONNECT方式)-->
+        <key name="port_udp" value="no"/>                           <!--UDP扫描：若启用UDP扫描则value为yes否则为no-->
+        <key name="live" value="yes"/>                              <!--主机存活测试：启用则value为yes否则为no-->
+        <key name="live_icmp" value="yes"/>                         <!--启用存活判断:若启用icmp ping存活判断,则value为yes,否则为no-->
+        <key name="live_udp" value="no"/>                           <!--启用存活判断:若启用udp ping存活判断,则value为yes,否则为no-->
+        <!--key name="live_udp_ports" value="25,53"/-->             <!--* UDP端口列表：若live_udp标签的value为yes则有此标签否则无,value为一个或多个端口用逗号分隔-->
+        <key name="live_tcp" value="yes"/>                          <!--启用存活判断:若启用tcp ping存活判断,则value为yes,否则为no-->
+        <key name="live_tcp_ports" value="21,22,23,25,80,443,445,139,3389,6000"/><!--* TCP端口列表：若live_tcp标签的value为yes则有此标签否则无，value为一个或多个端口用逗号分隔-->
+        <key name="live_arp" value="no"/>                           <!--启用存活判断:若启用ARP存活判断,则value为yes,否则为no-->
+        <key name="sping_delay" value="1"/>                         <!--sping_delay:存活探测速度：value为1~3,1为普通,2为较快,3为很快-->
+        <key name="scan_level" value="3"/>                          <!--扫描深度：value为1-5，分别代表由浅到深-->
+        <key name="timeout_plugins" value="40"/>                    <!--插件超时限制：value为1-300-->
+        <key name="timeout_read" value="5"/>                        <!--socket超时限制：value为1-60-->
+        <key name="enable_unsafe_plugins" value="no"/>              <!--危险插件扫描：若启用危险插件扫描则value为yes否则为no-->
+        <key name="scan_alert" value="no"/>                         <!--扫描前提示被扫描主机：若启用扫描前提示被扫描主机则value为yes否则为no-->
+        <!--key name="alert_msg" value=""/--><!--提示信息：若scan_alert为yes有此标签否则无，value为提示信息-->
+        <key name="scan_huawei" value="no"/>                        <!--深度扫描重要网络设备：若启用深度扫描重要网络设备则value为yes否则为no-->
+        <key name="check_addtional" value="no"/>                    <!--扫描调度忽略插件依赖关系：若启用扫描调度忽略插件依赖关系则value为yes否则为no-->
+         
+        <key name="scan_oracle" value="yes"/>                       <!--*启用oracle扫描，若启用则有此标签且value='yes'；若不启用则无此标签-->
+         
+        <key name="ifdebug" value="no"/>                            <!--调试模式：若启用调试模式则value为yes否则为no-->
+        <key name="encoding" value="GBK"/>                          <!---目标系统使用的语言编码：value为UTF-8或GBK-->
+    </server>
+    <targets/>
+    <pwdguess/>
+    <report>
+      <key name="report_ifcreate" value="no"/>                     <!--自动生成报表：若启用则value为yes否则为no-->
+      <key name="report_type" value="html"/>                       <!--自动生成报表类型：分别为html,doc,xls,pdf,xml，多个用逗号分隔-->
+      <key name="report_content" value="sum,host"/>                <!--自动生成报表内容： sum（综述），host（主机报表），多个用逗号分隔-->
+      <key name="report_tpl_sum" value="1"/>                       <!--综述报表使用的报表模板，默认1-->
+      <key name="report_tpl_host" value="101"/>                    <!--主机报表使用的报表模板，默认101-->
+      <key name="report_ifsent" value="no"/>                       <!--邮件发送报表：若启用则value为yes否则为no-->
+      <key name="report_ifsent_type" value="html"/>                <!--邮件发送报表类型：分别为html,doc,xls,pdf,xml，多个用逗号分隔,类型必须包含在report_type中-->
+      <key name="report_ifsent_email" value="admin@admin.com;test@test.com"/><!--发送的邮箱地址，多个邮箱地址使用英文分号“;"进行分隔-->
+      <key name="send_ftp" value="no"/>                            <!--报表ftp上传：若启用则value为yes否则为no-->
+    </report>
+    <taskname>[taskname测试]</taskname>                            <!--任务名称-->
+    <plugin_template_id>0</plugin_template_id>                     <!--漏洞模板id，可以通过模板接口获取-->
+</config>

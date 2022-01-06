@@ -1,0 +1,136 @@
+{
+    "data": [
+        {
+            "description": "本模板只进行端口扫描，不会进行插件扫描",
+            "id": 10,
+            "name": "端口扫描"
+        },
+        {
+            "description": "本模板只对扫描范围内的主机进行存活判断",
+            "id": 8,
+            "name": "存活主机扫描"
+        },
+        {
+            "description": "本模板只进行远程服务的Banner信息收集",
+            "id": 11,
+            "name": "远程服务版本信息收集"
+        },
+        {
+            "description": "如果确认目标是Windows系列，推荐使用此模板",
+            "id": 1,
+            "name": "Windows系列"
+        },
+        {
+            "description": "如果确认目标是Unix/Linux系列，推荐使用此模板",
+            "id": 2,
+            "name": "Unix/Linux系列"
+        },
+        {
+            "description": "本模板只扫描网络相关信息",
+            "id": 4,
+            "name": "网络信息收集"
+        },
+        {
+            "description": "本模板扫描所有插件",
+            "id": 12,
+            "name": "全部漏洞扫描"
+        },
+        {
+            "description": "如果确认目标是网络设备和防火墙，推荐使用此模板",
+            "id": 3,
+            "name": "网络设备和防火墙"
+        },
+        {
+            "description": "虚拟化漏洞模板",
+            "id": 21,
+            "name": "虚拟化漏洞"
+        },
+        {
+            "description": "Oracle数据库模板",
+            "id": 22,
+            "name": "Oracle数据库"
+        },
+        {
+            "description": "Mysql数据库模板",
+            "id": 23,
+            "name": "Mysql数据库"
+        },
+        {
+            "description": "Mssql数据库模板",
+            "id": 24,
+            "name": "Mssql数据库"
+        },
+        {
+            "description": "DB2数据库模板",
+            "id": 25,
+            "name": "DB2数据库"
+        },
+        {
+            "description": "SYBASE数据库模板",
+            "id": 26,
+            "name": "SYBASE数据库"
+        },
+        {
+            "description": "DNS漏洞模板",
+            "id": 99,
+            "name": "DNS检测"
+        },
+        {
+            "description": "存在于Exploit DB数据库中的漏洞",
+            "id": 15,
+            "name": "Exploit DB漏洞扫描"
+        },
+        {
+            "description": "存在于Metasploit数据库中的漏洞",
+            "id": 16,
+            "name": "Metasploit漏洞扫描"
+        },
+        {
+            "description": "存在于Exploit Pack数据库中的漏洞",
+            "id": 17,
+            "name": "Exploit Pack漏洞扫描"
+        },
+        {
+            "description": "本模板扫描采用的方法为原理扫描",
+            "id": 18,
+            "name": "原理扫描"
+        },
+        {
+            "description": "本模板支持对常见国产操作系统和国产软件扫描",
+            "id": 20,
+            "name": "国产系统和软件漏洞扫描"
+        },
+        {
+            "description": "紧急漏洞模板",
+            "id": 28,
+            "name": "紧急漏洞"
+        },
+        {
+            "description": "本模板只对高威胁的漏洞进行扫描",
+            "id": 9,
+            "name": "高危漏洞扫描"
+        },
+        {
+            "description": "方程式泄漏工具漏洞扫描",
+            "id": 29,
+            "name": "方程式泄漏工具漏洞扫描"
+        },
+        {
+            "description": "本模板用于扫描远程办公软件漏洞",
+            "id": 32,
+            "name": "远程办公软件漏洞"
+        },
+        {
+            "description": "本模板只进行Agent信息收集，不对扫描目标进行扫描，全量Agent扫描功能依赖：系统版本V6.0R04F00及以上，并购买“全量Agent扫描”授权模块",
+            "id": 5,
+            "name": "全量信息收集模板"
+        },
+        {
+            "description": "本模板检测的漏洞均支持漏洞验证，漏洞验证功能依赖：系统版本V6.0R04F00及以上，并购买“漏洞验证”授权模块",
+            "id": 33,
+            "name": "可验证漏洞扫描模板"
+        }
+    ],
+    "ret_code": 0,
+    "ret_msg": "success"
+}

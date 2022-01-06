@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webscan version="2.0">
+    <task>
+        <!-- 任务名称 -->
+        <name><![CDATA[webscan_basic_tpl]]></name>
+ 
+        <!-- 扫描目标 -->
+         
+        <target><![CDATA[http://10.65.198.234/mg/]]></target>
+         
+        <!-- 任务模式：0 边爬边扫，1 只爬不扫，2 只扫不爬 -->
+        <mode><![CDATA[0]]></mode>
+ 
+        <!-- 代理 -->
+        <proxy>
+            <protocol><![CDATA[]]></protocol><!-- 代理默认值为空，需要用代理时可填写范围为HTTP、SOCKS4、SOCKS5 -->
+            <server><![CDATA[]]></server><!-- 代理服务器地址，默认为空，用到代理时需填写正确格式的ipv4或ipv6地址；ipv6地址需要两端加中括号，例如填写内容为“[::1]”表示本地回环ipv6地址 -->
+            <port><![CDATA[]]></port><!-- 代理端口，默认为空，用到代理时填写协议配置指定的端口号，整数 -->
+            <!-- 协议认证 默认为空，支持Basic NTLM1 Digest-MD5 目前不支持NTLM2 -->
+            <auth><![CDATA[]]></auth>
+            <username><![CDATA[]]></username><!-- 协议认证用户名 -->
+            <password><![CDATA[]]></password><!-- 协议认证密码 -->
+        </proxy>
+        <!-- url访问高级配置 -->
+        <access>
+            <!--site_access节点个数与target的个数保持一致 -->
+            <!-- 站点级别配置，协议类型、用户名和密码-->
+            <site_access site="http://10.65.198.234/mg/">
+                <auth><![CDATA[auto]]></auth><!-- 协议认证支持Basic、NTLM1、Digest-MD5、Auto（自动识别），默认为Auto -->
+                <username><![CDATA[]]></username><!-- 协议认证用户名 -->
+                <password><![CDATA[]]></password><!-- 协议认证密码 -->
+            </site_access>
+            <!-- 网络请求超时时间，单位(s) -->
+            <network_timeout><![CDATA[30]]></network_timeout>
+            <!-- 网页编码格式：数据为空表示自动检测，其他为指定格式 -->
+            <page_encode><![CDATA[]]></page_encode>
+            <!-- 总线程数，范围为1-100，单位(M) -->
+            <max_concurrent_num><![CDATA[100]]></max_concurrent_num>
+            <!-- http请求失败重试次数，范围为1-5 -->
+            <request_retry_times><![CDATA[3]]></request_retry_times>
+        </access>
+ 
+        <!-- request header设置 -->
+        <header>
+            <!-- 登录扫描使用预设cookie -->
+            <!-- cookie配置针对站点，节点个数与target保持一致 -->
+            <cookie site="http://www.testfire.net"><![CDATA[]]></cookie><!-- 填写登录扫描的站点和登录时使用的有效cookie值 -->
+ 
+            <!-- User-Agent设置 -->
+            <user_agent><![CDATA[Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4]]></user_agent>
+        </header>
+		
+		<!-- 备份文件检测配置 -->
+        <backup>
+            <!-- 原文件类型 -->
+            <file_types><![CDATA[shtml,php,jsp,asp,aspx]]></file_types>
+            <!-- 备份文件扩展名 -->
+            <exts><![CDATA[bak,old]]></exts>
+        </backup>
+		
+		<!-- 文件猜测配置 -->
+        <guess>
+                <!-- 目录猜测范围(对应于引擎定义的范围)：0-3，0表示不猜测-->
+                <level><![CDATA[1]]></level>
+ 
+                <!-- 目录猜测深度 ，范围0-30-->
+                <depth><![CDATA[3]]></depth>
+        </guess>
+ 
+        <!-- links爬取链接总数限制，-1表示不限制 -->
+        <links_limit><![CDATA[-1]]></links_limit>
+    </task>
+ 
+    <!-- 爬虫
+        注意：其中表示数目限制的配置项，-1表示不限制 -->
+    <crawl>
+        <!-- 爬取范围限制方式：0 域名，1 当前目录及其子目录，2 当前url -->
+        <scope_type><![CDATA[1]]></scope_type>
+        <!-- 是否扫描子域名和下一个字段连用 0 整站扫描，1 扫描子域名 2 不扫描子域名-->
+        <subdomains_scantype><![CDATA[0]]></subdomains_scantype>
+        <!-- 域名白名单或者黑名单配置，可配置对应子域名范围配置1或2时，需要生效的黑或白名单子域名，域名支持通配符?和*-->
+        <domains><![CDATA[]]></domains>
+ 
+        <assist>
+            <!-- 爬行顺序：0 广度优先，1 深度优先 -->
+            <sequence><![CDATA[0]]></sequence>
+ 
+            <!-- 目录深度限制，以域名目录为根计算（-1表示不限制，不建议使用-1） -->
+            <dir_depth_limit><![CDATA[15]]></dir_depth_limit>
+ 
+            <!-- 单目录文件数目限制  -1表示不限制-->
+            <files_limit_per_dir><![CDATA[-1]]></files_limit_per_dir>
+            <!-- 自定义页面关键字，只扫描页面中有关键字的页面 -->
+            <keywords><![CDATA[]]></keywords>
+            <!-- 允许或禁止的链接 -->
+            <!-- 自定义链接和排除链接调整为站点级别配置-->
+            <!-- links节点的个数与target个数保持一致-->
+            <links>
+                <!-- 链接黑名单，爬取过程中遇到此链接不再进行深度爬取 -->
+                <black site=""><![CDATA[]]></black>
+                <black site=""><![CDATA[]]></black>    
+                     
+                <!-- 链接白名单，直接进入爬取队列的url，只能填写与种子url在一个域名下的链接 -->
+                <white site=""><![CDATA[]]></white>    
+                <white site=""><![CDATA[]]></white>        
+            </links>
+            <!-- 目录黑白名单配置，可填写从根目录开始的绝对路径，如/test/admin/，或单独需要匹配的目录中的一个目录名 -->
+            <dirs>
+                <!--目录黑名单 -->
+                <black><![CDATA[]]></black>
+                <!-- 目录白名单 -->
+                <white><![CDATA[]]></white>
+            </dirs>
+            <!-- 消重策略 -->
+            <deduplication_policy>
+                <!-- 大小写敏感：0 不区别，1 区别 -->
+                <case_sensitive><![CDATA[1]]></case_sensitive>
+                <!-- 消重级别范围[0-4] 默认值为2。 0：对页面敏感；1：对页面，请求方式敏感；2：对页面，请求方式，参数名敏感； 3：对页面，请求方式，参数名，GET参数值敏感；4：对页面，请求方式，参数名，GET参数值，POST提交数据敏感-->
+                <level><![CDATA[2]]></level>
+            </deduplication_policy>
+ 
+            <!-- 解析flash文件: 0 关闭，1 开启 -->
+            <flash_switch><![CDATA[0]]></flash_switch>
+ 
+            <!-- JavaScript执行方式：0 禁止，1 开启-->
+            <js_switch><![CDATA[1]]></js_switch>
+            <!-- web service扫描 -->
+            <web_service_switch><![CDATA[0]]></web_service_switch>
+			<!-- 表单扫描，1为开启，0为关闭 -->
+			<form_switch><![CDATA[1]]></form_switch>
+            <!-- 表单填充(引擎支持表单扫描，故去掉多余配置项) -->             
+        </assist>
+		
+        <skip>
+            <!--排除的文件名关键字,分隔符逗号 -->
+            <file_names><![CDATA[del,delete,sigoff,sigout,logout,logoff,loggin,exit]]></file_names>
+
+           <!-- 链接排除文件后缀,此处爬虫对包含 js和css的链接 增加标记（插件用） -->
+           <file_exts><![CDATA[jpg, gif, png, jpeq, bmp, doc, xls, ppt, pdf, tar, zip, gz, rar, dat, wmv, mpg, mp3, mp4, mpeg, emz, exe]]></file_exts>
+        </skip>
+    </crawl>
+ 
+    <!-- 扫描 -->
+    <scan>
+        <plugin>
+		    <!-- 插件模板包含的vul_id，为空表示调用全部的漏洞插件，0表示不调用，其他为指定的部分漏洞，默认为空 -->
+            <vuls><![CDATA[]]></vuls>
+            <!-- 站点信息收集模板，1表示调用全部的站点信息收集插件，0表示不调用，默认0 -->
+            <info><![CDATA[0]]></info>
+        </plugin>
+        <!-- 弱口令字典，账号和密码用冒号分隔，每组账号和密码以逗号分隔，为了区分账号密码中的“:,”以及防止xml格式被“]]>”截断，需要对“:,\>”用“\”进行转义 -->
+        <weak_password><![CDATA[admin:admin,admin:123456,admin:admin888,admin:abc123,root:root,test:test,root:123456,root:,test:123456,test:abc123,Administrator:Administrator]]></weak_password>
+        <!-- 已知应用识别(待插件研发和市场沟通确定)-->
+        <app_detect>
+            <app name='xxx'>
+                <rule url='xxx.html'></rule>
+            </app>
+        </app_detect>
+    </scan>
+    <config>
+    <plugin_template_id>0</plugin_template_id><!--web扫描模板id。默认0：自动匹配模板；100：Web应用漏洞(全部)；102：快速扫描；103：高危漏洞扫描；104：SQL注入扫描；105：XSS扫描；106：远程挂马扫描；107：未知漏洞扫描；217：身份证号-->
+    <scanpri>2</scanpri><!--扫描优先级别-->
+    </config>
+    <report>
+	  <key name="report_ifcreate" value="no"/><!--是否在任务结束后自动生成报表，生成：yes，不生成：no-->
+      <key name="report_type" value="html"/><!--生成报表的格式，多种格式用逗号隔开，目前支持html,doc,xls,pdf-->
+      <key name="report_content" value="host"/><!--报表内容，综述报表：sum，单站点报表：host-->
+      <key name="report_tpl_sum" value="201"/><!--综述报表使用的报表模板，默认201-->
+      <key name="report_tpl_host" value="301"/><!--单站点报表使用的报表模板，默认301-->
+      <key name="report_ifsent" value="no"/><!--报表是否发送邮件，发送：yes，不发送：no-->
+      <key name="report_ifsent_type" value="html"/><!--发送邮件的报表格式，多种格式用逗号隔开，目前支持html,doc,xls,pdf-->
+      <key name="report_ifsent_email" value="XXX@XXX.com"/><!--发送的目标邮箱地址-->
+      <key name="send_ftp" value="no"/><!--是否将报表上传至ftp服务器-->
+     </report>
+</webscan>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+ <server>
+ <key name="task_type" value="pwd"/>                          <!--任务类型:口令猜测任务value为"pwd"-->
+ <key name="targets" value="10.65.195.204"/>                   <!--扫描目标:如果有多个目标,目标用逗号或者分号分隔-->
+ <key name="live" value="yes"/>                               <!--存活判断:若启用则value为yes,否则为no-->
+<!--存活判断启用时:配置以下live_icmp,live_udp,live_tcp,live_tcp_ports字段,不启用时可以删除-->
+ <key name="live_icmp" value="yes"/>                          <!--启用存活判断:若启用icmp ping存活判断,则value为yes,否则为no-->
+ <key name="live_udp" value="no"/>                            <!--启用存活判断:若启用udp ping存活判断,则value为yes,否则为no-->
+ <!--key name="live_udp_ports" value="25,53"/-->              <!--* UDP端口列表：若live_udp标签的value为yes则有此标签否则无,value为一个或多个端口用逗号分隔-->
+ <key name="live_tcp" value="yes"/>                           <!--启用存活判断:若启用tcp ping存活判断,则value为yes,否则为no-->
+ <key name="live_tcp_ports" value="21,22,23,25,80,443,445,139,3389,6000"/>  <!--启用存活判断并启用tcp ping存活判断时,value为tcp ping 端口-->
+ <key name="live_arp" value="no"/>                            <!--启用存活判断:若启用ARP存活判断,则value为yes,否则为no-->
+ <key name="ifdebug" value="no"/>                             <!--调试模式:启用value为yes,否则为no-->
+ <key name="isguesspwd" value="yes"/>                         <!--口令猜测:启用value为yes,否则为no;口令猜测任务value默认为yes-->
+ <key name="scan_huawei" value="no"/>                         <!--深度扫描重要网络设备：若启用深度扫描重要网络设备则value为yes否则为no-->
+ </server>
+ <targets></targets>
+ <!--口令猜测任务报表设置,如果不启用自动生成报表保留空节点即可-->
+ <report>
+      <key name="report_ifcreate" value="no"/>                <!--自动生成报表:若启用则value为yes,否则为no-->
+      <key name="report_type" value="html,doc,xls,pdf,xml"/>   <!--自动生成报表类型: 分别为html,doc,xls,pdf,xml,多个用逗号分隔-->
+      <key name="report_content" value="sum,host"/>            <!--自动生成报表内容: sum(综述报表),host(主机报表),多个用逗号分隔-->
+      <key name="report_tpl_sum" value="1"/>                   <!--综述报表-报表模板: 默认 1-->
+      <key name="report_tpl_host" value="101"/>                <!--主机报表-报表模板: 默认 101-->
+      <key name="report_ifsent" value="no"/>                  <!--邮件发送报表: 若启用则value为yes,否则为no-->
+      <key name="report_ifsent_type" value="html,doc"/>         <!--邮件发送报表类型:分别为html,doc,xls,pdf,xml,多个用逗号分隔-->
+      <key name="report_ifsent_email" value="test@nsfocus.com"/>  <!--发送的邮件地址,多个邮箱地址使用英文分号;进行分隔-->
+      <key name="send_ftp" value="no"/>                       <!--报表ftp上传: 若启用则value为yes,否则为no-->
+ </report>
+ <pwdguess><!--口令猜测服务类型配置-->
+ <key name="pwdguess:vul_set" value="2002;2012;2004;2005"/>    <!--口令猜测漏洞: value默认为2002;2012;2004;2005-->
+ <key name="pwdguess:plugin_set" value="2002;2012;2004;2005"/> <!--口令猜测插件id: value默认为2002;2012;2004;2005-->
+ <!--
+ =======================================================================================
+ | 口令猜测服务类型设置: 启用某服务类型猜测,配置对应条目;不启用时,可以删除对应服务条目 |
+ | 各服务value值设置说明:                                                              |
+ | a. 若使用标准模式(用户名/密码)时,value设置为对应服务type为userPwd的密码字典的id     |
+ | b. 若使用组合模式时,value设置两个值: 用户名(type为user)字典id;密码(type为pwd)字典id |
+ =======================================================================================
+ -->
+ <key name="pwdguess:SMB" value="181"/>                        <!--口令猜测SMB服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"172;163"，如果使用标准模式，则填写包含账号密码字典的id，例如：181;若不启用,该条目可删除-->
+ <key name="pwdguess:TELNET" value="182"/>                     <!--口令猜测TELNET服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"173;163"，如果使用标准模式，则填写包含账号密码字典的id，例如：182;若不启用,该条目可删除-->
+ <key name="pwdguess:SSH" value="190"/>                        <!--口令猜测SSH服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"188;189"，如果使用标准模式，则填写包含账号密码字典的id，例如：190;若不启用,该条目可删除-->
+ <key name="pwdguess:SNMP" value="162"/>                       <!--口令猜测SNMP服务: 若启用,value为猜测使用的密码字典id，例如：162;若不启用,该条目可删除-->
+ <key name="pwdguess:FTP" value="179"/>                        <!--口令猜测FTP服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"170;159"，如果使用标准模式，则填写包含账号密码字典的id，例如：179;若不启用,该条目可删除-->
+ <key name="pwdguess:POP3" value="180"/>                       <!--口令猜测POP3服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"171;160"，如果使用标准模式，则填写包含账号密码字典的id，例如：180;若不启用,该条目可删除-->
+ <key name="pwdguess:TOMCAT" value="196"/>                     <!--口令猜测TOMCAT服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"194;195"，如果使用标准模式，则填写包含账号密码字典的id，例如：196;若不启用,该条目可删除-->
+ <key name="pwdguess:MSSQL" value="185"/>                      <!--口令猜测MSSQL服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"176;167"，如果使用标准模式，则填写包含账号密码字典的id，例如：185;若不启用,该条目可删除-->
+ <key name="pwdguess:MYSQL" value="186"/>                      <!--口令猜测MYSQL服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"177;166"，如果使用标准模式，则填写包含账号密码字典的id，例如：186;若不启用,该条目可删除-->
+ <key name="pwdguess:ORACLE" value="184"/>                     <!--口令猜测ORACLE服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"175;165"，如果使用标准模式，则填写包含账号密码字典的id，例如：184;若不启用,该条目可删除-->
+ <key name="pwdguess:SYBASE" value="183"/>                     <!--口令猜测SYBASE服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"174;164"，如果使用标准模式，则填写包含账号密码字典的id，例如：183;若不启用,该条目可删除-->
+ <key name="pwdguess:DB2" value="193"/>                        <!--口令猜测DB2服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"191;192"，如果使用标准模式，则填写包含账号密码字典的id，例如：193;若不启用,该条目可删除-->
+<key name="pwdguess:RDP" value="205"/>                        <!--口令猜测DB2服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"203;204"，如果使用标准模式，则填写包含账号密码字典的id，例如：205;若不启用,该条目可删除-->
+<key name="pwdguess:MONGODB" value="193"/>                        <!--口令猜测DB2服务: 若启用,value为猜测使用的密码字典id，如果使用账号密码组合方式需要填写账号字典+密码字典并且使用分号分隔，例如"200;201"，如果使用标准模式，则填写包含账号密码字典的id，例如：202;若不启用,该条目可删除-->
+ <key name="pwdguess:timeout" value="30"/>                     <!--口令猜测时间: 默认为30分钟-->
+ <key name="pwdguess:interval" value="0"/>                     <!--口令猜测频率(多个协议口令猜测之间的时间间隔): 默认为0秒，可取值为0-600-->
+ <key name="pwdguess:num" value="0"/>                          <!--口令猜测次数(对单个目标的猜测次数): 默认为0标识无限制-->
+ <key name="pwdguess:threadnum" value="5"/>                    <!--最大并发线程数(单个目标的单个服务口令猜测时的并发线程数): 默认为5，可取值为：1-10-->
+ </pwdguess>
+ <taskname><![CDATA[扫描【10.65.195.204】]]></taskname>         <!--任务名称: 不填时根据会生成默认名称-->
+ <userid><![CDATA[2]]></userid>                                <!--用户id: 默认admin为2-->
+ <username><![CDATA[admin]]></username>                        <!--用户名称: 默认admin为2-->
+</config>

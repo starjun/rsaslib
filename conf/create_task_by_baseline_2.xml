@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<config>
+    <server>
+        <key name="task_type" value="ip"/>                          <!--任务类型，配置核查任务的目标为ip形式，此项保持默认即可，不用修改-->
+
+        <key name="os_match" value="no"/>
+        <key name="messtypes" value="5;6;7;8;9;10;11;12;13;14;15;16;17;18;20;21;22;23;24;25;26;27;28"/>
+        <key name="isguesspwd" value="no"/>
+        <key name="port_strategy" value="standard"/>
+        <key name="port_speed" value="3"/>
+        <key name="port_tcp" value="T"/>
+        <key name="port_udp" value="no"/>
+
+        <key name="targets" value="192.168.1.1"/>                  <!--目标IP-->
+        <key name="live" value="yes"/>                             <!--存活判断:若启用则value为yes,否则为no，若设备到目标环境不可达，建议value值填写为no-->
+        <key name="live_icmp" value="yes"/>                        <!--启用存活判断:若启用icmp ping存活判断,则value为yes,否则为no-->
+        <key name="live_udp" value="no"/>                          <!--启用存活判断:若启用udp ping存活判断,则value为yes,否则为no-->
+        <!--key name="live_udp_ports" value="25,53"/-->            <!--* UDP端口列表：若live_udp标签的value为yes则有此标签否则无,value为一个或多个端口用逗号分隔-->
+        <key name="live_tcp" value="yes"/>                         <!--启用存活判断:若启用tcp ping存活判断,则value为yes,否则为no-->
+        <key name="live_tcp_ports" value="21,22,23,25,80,443,445,139,3389,6000"/><!--根据实际情况填写，示例中的value值为默认值-->
+        <key name="live_arp" value="no"/>                          <!--启用存活判断:若启用ARP存活判断,则value为yes,否则为no-->
+        <key name="scan_level" value="3"/>
+        <key name="timeout_plugins" value="40"/>
+        <key name="timeout_read" value="5"/>
+        <key name="enable_unsafe_plugins" value="no"/>
+        <key name="scan_alert" value="no"/>
+        <key name="scan_huawei" value="no"/>
+        <key name="check_addtional" value="no"/>         
+        <key name="scan_oracle" value="yes"/>        
+        <key name="ifdebug" value="yes"/>
+        <key name="encoding" value="GBK"/>
+    </server>
+    <targets>                                                      <!--扫描目标，若存在多个扫描目标，则在下方添加多个target标签-->   
+        <target>
+            <ip>192.168.1.1</ip>                                   <!--扫描目标IP-->
+            <protocol>SSH</protocol>                               <!--登录协议, 根据目标环境支持的协议填写，目前支持：SSH,Telnet,SMB,RDP-->
+            <port>22</port>                                        <!--登录协议端口，根据实际情况填写-->
+            <username>test</username>                              <!--登录用户名-->
+            <password>123456</password>                            <!--登录密码-->
+            <jumphosts>                                            <!--若BVS不能直接登录目标环境，则在此处添加跳转主机-->   
+            </jumphosts>
+            <templates>                                            <!--核查模板，若此IP核查多个模板，则在下方添加多个template标签-->
+                <template uuid="xxxxxxxx-6ab2-ef53-1589-fe16877914f4" engine="bvs"><!--配置核查模板uuid，模板uuid可通过"配置模板列表获取"接口查询-->           
+                    <param name="参数1" description="" typefield="text">xx</param><!--配置核查模板参数，模板参数可通过"配置模板参数获取"接口查询--> 
+                    <param name="参数2" description="" typefield="password">xx</param>
+                    <param name="ip">192.168.1.1</param>           <!--参数扫描目标IP-->
+                    <param name="username">test</param>            <!--参数登录用户名-->
+                    <param name="password">123456</param>          <!--参数登录密码-->
+                </template>
+            </templates>
+        </target>  
+    </targets>
+    <report>                                                       <!--离线报表输出相关参数-->
+        <key name="report_ifcreate" value="no"/>                   <!--是否需要生成离线报表，value值为yes或no-->
+        <key name="report_type" value="html,word"/>                <!--生成离线报表的类型，类型有html,doc,xls,pdf,xml，生成多种类型时用,隔开-->
+        <key name="report_content" value="sum,host"/>              <!--生成离线报表的内容，综述:sum 主机:host，两种都需要时如示例-->
+        <key name="report_tpl_sum" value="1"/>                     <!--综述报表模板，1:系统默认模板, 2:行政主管模板, 3:技术主管模板, 4:历史数据分析模板-->
+        <key name="report_tpl_host" value="101"/>                  <!--主机报表模板，101:系统默认模板, 102:历史数据分析模板-->
+        <key name="report_ifsent" value="no"/>                     <!--是否发送已生成的离线报表，value值为yes或no，此参数生效的前提是：1,report_ifcreate为yes, 2,在设备任务配置中已配置邮件服务器-->
+        <key name="report_ifsent_type" value="html"/>              <!--发送报表的格式，此参数依赖于report_type中生成的报表类型-->
+        <key name="report_ifsent_email" value="xx@xx.com"/>        <!--要发送报表的目标邮箱地址-->
+        <key name="send_ftp" value="no"/>                          <!--是否将生成的报表上传至ftp服务器，value值为yes或no，此参数生效的前提是：1,report_ifcreate为yes, 2,在设备任务配置中已配置ftp服务器-->
+    </report>
+    <pwdguess/>
+    <taskname>baseline</taskname>                                  <!--任务名称,根据实际需要填写-->
+    <userid>2</userid>                                             <!--创建任务的用户id-->
+    <username>admin</username>                                     <!--创建任务的用户名-->
+</config>

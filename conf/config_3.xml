@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--若标签注释中加了*号,则代表此标签根据其余条件的判断来决定是否存在,即此标签可能不存在-->
+    <!--若标签有两个注释,则第二个注释用于注释口令猜测任务-->
+    <server>
+        <key name="task_type" value="ip"/>                        <!--扫描目标类型：value为ip或domain-->
+        <key name="targets" value="10.66.251.12"/>
+        <!--扫描目标：10.5.2.63 若target_type为ip则value为一个或多个ip用分号分隔,若target_type为domain则value为一个或多个域名用分号分隔-->
+        <!--口令猜测任务,value为一个或多个ip用分号分隔-->
+        <key name="is_vhost" value="no"/>                         <!--* 虚拟主机：若target_type为domain则有此标签否则无,若勾选了虚拟主机则value为yes否则为no-->
+        <key name="os_match" value="yes"/>                        <!--自动匹配漏洞扫描：若漏洞扫描模板选择的自动匹配扫描则value为yes否则为no-->       
+        <key name="isguesspwd" value="yes"/>                      <!--评估任务的口令猜测：评估任务若启用口令猜测任务则value为yes否则为no-->
+        <!--口令猜测任务value为yes,此值为yes时,pwdguess标签不为空即需要解析口令猜测-->
+        <key name="port_strategy" value="user"/>
+        <!--端口策略：value为四选一,standard(标准端口扫描)、fast(快速端口扫描)、user(指定端口扫描)、allports(全端口扫描)-->
+        <key name="port_strategy_userports" value="1-100,443,445"/>
+        <!--*指定端口列表：若port_strategy为user有此标签否则无,value为一个或多个端口用逗号分隔 -->
+        <key name="port_speed" value="4"/>                        <!--端口扫描速度：value为1-5,分别代表由慢到快-->
+        <key name="port_tcp" value="S"/>                          <!--TCP端口扫描方式：value为S(SYN方式)或者T(CONNECT方式)-->
+        <key name="port_udp" value="no"/>                         <!--UDP扫描：若启用UDP扫描则value为yes否则为no-->
+        <key name="live" value="yes"/>                            <!--主机存活测试：启用则value为yes否则为no,若设备到目标环境不可达，建议value值填写为no-->
+        <key name="live_icmp" value="yes"/>                       <!--启用存活判断:若启用icmp ping存活判断,则value为yes,否则为no-->
+        <key name="live_udp" value="no"/>                         <!--启用存活判断:若启用udp ping存活判断,则value为yes,否则为no-->
+        <!--key name="live_udp_ports" value="25,53"/-->           <!--* UDP端口列表：若live_udp标签的value为yes则有此标签否则无,value为一个或多个端口用逗号分隔-->
+        <key name="live_tcp" value="no"/>                         <!--启用存活判断:若启用tcp ping存活判断,则value为yes,否则为no-->
+        <!--key name="live_tcp_ports" value="21,22,23,25,80,443,445,139,3389,6000"/--><!--* TCP端口列表：若live_tcp标签的value为yes则有此标签否则无,value为一个或多个端口用逗号分隔-->
+        <key name="live_arp" value="no"/>                         <!--启用存活判断:若启用ARP存活判断,则value为yes,否则为no-->
+        <key name="sping_delay" value="1"/>                       <!--sping_delay:存活探测速度：value为1~3,1为普通,2为较快,3为很快-->
+        <key name="scan_level" value="3"/>                        <!--扫描深度：value为1-5-->
+        <key name="timeout_plugins" value="40"/>                  <!--插件超时限制：value为1-300-->
+        <key name="timeout_read" value="5"/>                      <!--socket超时限制：value为1-60-->
+        <key name="enable_unsafe_plugins" value="no"/>            <!--危险插件扫描：若启用危险插件扫描则value为yes否则为no--><!--口令猜测任务,则value为no-->
+        <key name="scan_alert" value="no"/>                       <!--扫描前提示被扫描主机：若启用扫描前提示被扫描主机则value为yes否则为no--><!--口令猜测任务,则value为no-->
+        <key name="alert_msg" value=""/>                          <!--提示信息：若tip为yes有此标签否则无,value为提示信息-->
+        <key name="scan_huawei" value="no"/>                       <!--深度扫描重要网络设备：若启用深度扫描重要网络设备则value为yes否则为no-->
+        <key name="check_addtional" value="no"/>
+        <!--扫描调度忽略插件依赖关系：若启用扫描调度忽略插件依赖关系则value为yes否则为no-->
+        <key name="srv_vul_detect" value="yes"/>                     <!--扫描是否启用OpenSSH版本扫描：若启用则value为yes否则为no，value为yes表示会对OpenSSH进行版本扫描，value为no表示不会对OpenSSH进行版本扫描--> 
+		<!--口令猜测任务,则value为no-->
+        <!--*启用oracle扫描,若启用则有此标签且value='yes'；若不启用或第三方平台下的任务则无此标签-->
+        <key name="ifdebug" value="yes"/>                          <!--调试模式：若启用调试模式则value为yes否则为no-->
+        <!--口令猜测任务同评估任务-->
+        <key name="encoding" value="UTF-8"/>                        <!--目标系统使用的语言编码：value为UTF-8或GBK-->
+    </server>
+    <targets>
+    <!--登陆检查信息：此标签一直存在,若未启用登陆检查或者登陆检查信息为空,则此标签为空标签,
+    口令猜测任务此标签为空标签-->
+        <target>
+            <ip><![CDATA[10.10.10.10]]></ip>
+            <protocol><![CDATA[SSH]]></protocol>
+            <port><![CDATA[22]]></port>
+            <username><![CDATA[root]]></username>
+            <password><![CDATA[Gp+CdzxD]]></password>
+            <jumphosts>
+                <jumphost>
+                    <ip><![CDATA[1.1.1.1]]></ip>
+                    <protocol><![CDATA[SSH]]></protocol>
+                    <port><![CDATA[22]]></port>
+                    <username><![CDATA[root]]></username>
+                    <password><![CDATA[Gp+CdzxD]]></password>
+                </jumphost>
+            </jumphosts>
+            <templates/>
+            <statustpls uuid="4" engine=""></statustpls>
+        </target>
+    </targets>
+    <report>
+      <key name="report_ifcreate" value="no"/>                      <!--*是否自动生成报告,value取值:"yes","no"-->
+      <key name="report_type" value="html,doc,xls,pdf,xml"/>        <!--*自动生成报告的格式,value取值：html,doc,xls,pdf,xml-->
+      <key name="report_content" value="sum,host"/>                 <!--*报表内容,value取值:sum,host;其中sum综述报表,host主机报表 -->
+      <key name="report_tpl_sum" value="1"/>                        <!--*综述报表使用的报表模板,默认1 -->
+      <key name="report_tpl_host" value="101"/>                     <!--*主机报表使用的报表模板,默认101 -->
+      <key name="report_ifsent" value="yes"/>                       <!--*报表是否发送邮件,value取值:"yes","no"-->
+      <key name="report_ifsent_type" value="html"/>                 <!--*发送邮件的报表格式,value取值：html,doc,xls,pdf,xml -->
+      <key name="report_ifsent_email" value="18801180400@139.com"/>   <!--*发送的目标邮箱地址,多个邮箱地址使用英文分号";"进行分隔 -->
+      <key name="send_ftp" value="yes"/>                            <!--是否上传ftp,value取值:"yes","no" -->
+    </report>
+    <pwdguess>
+        <!--口令猜测任务参数中,需要用户填写服务类型及口令猜测字典,口令猜测字典可通过 密码字典获取接口进行获取,
+        将对应的id写入服务类型中,组合模式写入两个id（一个用户名id(type=user)一个密码id(type=pwd)）,已分号分隔,
+        标准模式写入一个id（组合模式的用户名和密码type=userPwd）；
+        如果服务类型是SNMP,仅需输入一个type=pwd的密码id-->
+        <key name="pwdguess:timeout" value="30"/>                  <!--*口令猜测时间-->
+        <key name="pwdguess:interval" value="0"/>                  <!--*口令猜测频率-->
+        <key name="pwdguess:threadnum" value="5"/>                 <!--*口令猜测的最多并发线程数-->
+        <key name="pwdguess:SMB" value="181"/>
+        <!--*若服务类型选择smb,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:RDP" value="205"/>
+        <!--*若服务类型选择rdp,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:TELNET" value="182"/><!--*若服务类型选择telnet,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:FTP" value="179"/>
+        <!--*若服务类型选择ftp,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:SSH" value="190"/>
+        <!--*若服务类型选择ssh,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:POP3" value="180"/>
+        <!--*若服务类型选择pop3,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:TOMCAT" value="196"/><!--*若服务类型选择tomcat,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:MSSQL" value="185"/> <!--*若服务类型选择mssql,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:MYSQL" value="186"/> <!--*若服务类型选择mysql,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:ORACLE" value="184"/><!--*若服务类型选择oracle,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:SYBASE" value="183"/><!--*若服务类型选择sybase,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:DB2" value="193"/>
+        <!--*若服务类型选择db2,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+        <key name="pwdguess:SNMP" value="162"/>
+        <!--*若服务类型选择snmp,则有此标签,否则无,只有密码字典一项,value为所选密码字典的密码字典编号-->
+        <key name="pwdguess:MONGODB" value="202"/><!--*若服务类型选择mongodb,则有此标签,否则无；若组合模式则是所选用户字典和密码字典的密码字典编号用分号相隔,若是标准模式则是所选用户-密码字典的密码字典编号-->
+    </pwdguess>
+    <taskname><![CDATA[domain_vultask_tpl]]></taskname>          <!--任务名称-->
+    <plugin_template_id>0</plugin_template_id>                   <!--漏洞模板id-->
+    <scanpri>2</scanpri>                                         <!--扫描优先级-->
+</config>
